@@ -1,1 +1,0 @@
-# image_stitching_head_counter
