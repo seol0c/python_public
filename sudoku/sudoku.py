@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
 from copy import deepcopy
-#ddds
+
 # 보드에 숫자 넣기 전 유효성 검사
 def is_valid(board, row, col, num):
     for i in range(9):
