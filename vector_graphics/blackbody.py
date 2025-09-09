@@ -73,6 +73,25 @@ ax.set_ylabel(r"$u(\lambda)$ ($10^{-7}$ kJ/nm)")  # 지수 포함 라벨(숫자�
 ax.set_title("Blackbody radiation")
 ax.legend(title="Temperature", loc="upper right")
 
+# 온도 범례를 뒤집음(고온이 위로 가도록)
+# 현재 모든 범례 항목 가져오기
+handles, labels = ax.get_legend_handles_labels()
+
+# 온도 라인만 (끝에서 2개는 Wien's law, Visible range)
+temp_handles = handles[:-2][::-1]   # 역순 (고온이 위)
+temp_labels = labels[:-2][::-1]
+
+# 추가 라인만
+extra_handles = handles[-2:]
+extra_labels = labels[-2:]
+
+# 합치기 (온도 먼저, 그 다음 추가 라인)
+new_handles = temp_handles + extra_handles
+new_labels = temp_labels + extra_labels
+
+# 범례 출력
+ax.legend(new_handles, new_labels, title="", loc="upper right")
+
 # 원점이 꼭짓점에 붙도록 설정
 ax.set_xlim(0, 3000)    # x축 0~3000 nm
 ax.set_ylim(0, None)    # y축 0부터 시작
@@ -82,10 +101,10 @@ ax.yaxis.get_offset_text().set_visible(False)  # 축 위쪽 1e-? 표시 제거
 plt.tight_layout()
 
 # -------------------------------
-# 결과 저장 (벡터)
+# 결과 저장 (벡터) - 비활성화하고 수동으로 저장
 # -------------------------------
-plt.savefig("blackbody_u_lambda.svg")
-plt.savefig("blackbody_u_lambda.pdf")
+# plt.savefig("blackbody_u_lambda.svg")
+# plt.savefig("blackbody_u_lambda.pdf") 
 
 # -------------------------------
 # 화면 출력
