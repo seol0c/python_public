@@ -68,10 +68,11 @@ ax.axvline(750, color="gray", linestyle=":", linewidth=1)
 # -------------------------------
 # 라벨/제목/범례
 # -------------------------------
-ax.set_xlabel("Wavelength (nm)")
-ax.set_ylabel(r"$u(\lambda)$ ($10^{-7}$ kJ/nm)")  # 지수 포함 라벨(숫자는 그대로)
-ax.set_title("Blackbody radiation")
-ax.legend(title="Temperature", loc="upper right")
+ax.set_xlabel("Wavelength (nm)", fontsize=10)
+ax.set_ylabel(r"$u(\lambda)$ ($10^{-7}$ kJ/nm)", fontsize=10)  # 지수 포함 라벨(숫자는 그대로)
+ax.set_title("Blackbody radiation", fontsize=10)
+ax.legend(title="Temperature", loc="upper right", fontsize=10)
+ax.tick_params(axis='both', labelsize=10)        # 눈금 폰트
 
 # 온도 범례를 뒤집음(고온이 위로 가도록)
 # 현재 모든 범례 항목 가져오기
@@ -90,7 +91,7 @@ new_handles = temp_handles + extra_handles
 new_labels = temp_labels + extra_labels
 
 # 범례 출력
-ax.legend(new_handles, new_labels, title="", loc="upper right")
+ax.legend(new_handles, new_labels, title="", loc="upper right", fontsize=10)
 
 # 원점이 꼭짓점에 붙도록 설정
 ax.set_xlim(0, 3000)    # x축 0~3000 nm
@@ -99,6 +100,14 @@ ax.margins(x=0, y=0)    # x, y축 여백 제거
 ax.yaxis.get_offset_text().set_visible(False)  # 축 위쪽 1e-? 표시 제거
 
 plt.tight_layout()
+
+# 0 눈금 라벨 숨기기 (x, y 모두)
+xt = ax.get_xticks(); ax.set_xticks([t for t in xt if t != 0])
+yt = ax.get_yticks(); ax.set_yticks([t for t in yt if t != 0])
+# 원점에 '0'을 한 번만 표시
+ax.annotate("0", xy=(0, 0), xycoords="data",
+            xytext=(-8, -8), textcoords="offset points",
+            ha="center", va="center", clip_on=False)
 
 # -------------------------------
 # 결과 저장 (벡터) - 비활성화하고 수동으로 저장
