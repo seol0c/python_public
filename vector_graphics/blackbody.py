@@ -33,8 +33,8 @@ w_nm = np.linspace(0, 3000, 1000)   # 파장 (nm 단위)
 lam = w_nm * 1e-9                   # m 단위 변환
 
 
-# 그림 크기 지정
-fig, ax = plt.subplots(figsize=(6.4, 3.6))  # 기본 높이 4.8 → 3.6 (4/3 줄임)
+# 그림 크기 지정 - 가로, 세로
+fig, ax = plt.subplots(figsize=(5, 3))
 
 
 # -------------------------------
