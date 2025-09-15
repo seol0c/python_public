@@ -32,11 +32,15 @@ def u_lambda(lam, T):
 w_nm = np.linspace(0, 3000, 1000)   # 파장 (nm 단위)
 lam = w_nm * 1e-9                   # m 단위 변환
 
+
+# 그림 크기 지정
+fig, ax = plt.subplots(figsize=(6.4, 3.6))  # 기본 높이 4.8 → 3.6 (4/3 줄임)
+
+
 # -------------------------------
 # 여러 온도에서 흑체복사 곡선 (절대값) 그리기
 # -------------------------------
 temps = [2500, 3000, 3500, 4000, 4500, 5000, 5500]     # K
-fig, ax = plt.subplots()             # figure + axes 객체 생성(원점이 떠보이는 것 방지)
 for T in temps:
     u = u_lambda(lam, T)             # [J m^-4]
     u_kJ_per_nm = u * 1e-12          # J→kJ(×1e-3), per m→per nm(×1e-9) ⇒ ×1e-12
