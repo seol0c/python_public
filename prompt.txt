@@ -1,0 +1,12 @@
+
+
+1. 파이썬 프로젝트 파일 위치
+D:\seolgit\python\2_public\drone_counter\dc.py
+
+2. 파이썬 패키지 파일 위치
+D:\seolgit\python_packages
+
+3. 모든 추가 패키지는 위의 경로에 설치하고, 다음처럼 외부 패키지 불러서 실행
+import sys
+sys.path.append(r"D:\seolgit\python_packages")
+
